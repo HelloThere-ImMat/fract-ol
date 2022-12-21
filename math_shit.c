@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 14:48:34 by mdorr             #+#    #+#             */
-/*   Updated: 2022/12/20 18:14:46 by mdorr            ###   ########.fr       */
+/*   Updated: 2022/12/21 14:39:36 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,19 @@ int color_palette(int iteration)
 		return (0xFFEFFF);
 	//white
 	else
-	{
-		//while (i < 10)
-		//{
-		//	if(iteration < MAX_ITERATION / 1 *10)
-		//		return (0x000000);
-		//}
 		return (0x00000E);
-	}
 }
 
 //Func that will translate pixel position into a 2d plan with (0;0) in the center
 
-int color_main(int i, int j)
+int color_main(int i, int j, t_data *data)
 {
 	float cx;
 	float cy;
 	int color;
 
-	cx = (float)j * (XMAX - XMIN) / (float)(WINDOW_WIDTH) + XMIN;
-	cy = (float)i * (YMAX - YMIN) / (float)(WINDOW_HEIGHT) + YMIN;
+	cx = (float)j * (data->Xmax - data->Xmin) / (float)(WINDOW_WIDTH) + data->Xmin;
+	cy = (float)i * (data->Ymax - data->Ymin) / (float)(WINDOW_HEIGHT) + data->Ymin;
 	color = color_mandelbrot(cx, cy);
 	return (color);
 }

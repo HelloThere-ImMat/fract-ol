@@ -78,6 +78,6 @@ int main ();
 int	color_mandelbrot(float x, float y);
 int color_palette(int iteration);
 int color_main(int i, int j, t_data *data);
-
+float get_syst_pos(int x, int axis, t_data *data);
 
 #endif

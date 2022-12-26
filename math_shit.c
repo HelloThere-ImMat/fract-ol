@@ -6,28 +6,11 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 14:48:34 by mdorr             #+#    #+#             */
-/*   Updated: 2022/12/23 17:01:00 by mdorr            ###   ########.fr       */
+/*   Updated: 2022/12/26 13:04:39 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-
-int color_palette(int iteration)
-{
-	int i;
-
-	i = 1;
-	if (iteration < MAX_ITERATION / 4)
-		return (0x00001F);
-	if (iteration < MAX_ITERATION / 2)
-		return (0x0000F0);
-	if (iteration < MAX_ITERATION)
-		return (0xFFEFFF);
-	//white
-	else
-		return (0x000000);
-}
 
 //Func that will translate pixel position into a 2d plan with (0;0) in the center
 
@@ -40,6 +23,33 @@ float get_syst_pos(int x, int axis, t_data *data)
 	if (axis == 1)
 		c = -((float)x * (data->Ymax - data->Ymin) / (float)(WINDOW_HEIGHT) + data->Ymin);
 	return (c);
+}
+
+//This function calculates the new mathematic borders of our 2d visualisationaa
+
+float get_new_border(float x, float y, int type, t_data *data)
+{
+
+//why the fuck am i never using y ?
+
+	if (type == 1)
+		 return (data->Xmax - 0.25 * (data->Xmax - x));
+	if (type == 2)
+		return (data->Xmin - 0.25 * (data->Xmin - x));
+	if (type == 3)
+		return (data->Ymax - 0.25 * (data->Ymax - x));
+	if (type == 4)
+		return (data->Ymin - 0.25 * (data->Ymin - x));
+	if (type == 5)
+		 return (data->Xmax + 0.25 * (data->Xmax - x));
+	if (type == 6)
+		return (data->Xmin + 0.25 * (data->Xmin - x));
+	if (type == 7)
+		return (data->Ymax + 0.25 * (data->Ymax - x));
+	if (type == 8)
+		return (data->Ymin + 0.25 * (data->Ymin - x));
+	else
+		return (0);
 }
 
 
@@ -80,6 +90,22 @@ int	color_mandelbrot(float x, float y)
 	color = color_palette(iteration);
 	return (color);
 
+}
+
+int color_palette(int iteration)
+{
+	// if (iteration < MAX_ITERATION / 4)
+	// 	return (DARK_BLUE);
+	// if (iteration < MAX_ITERATION / 3)
+	// 	return (ORANGE);
+	// if (iteration < MAX_ITERATION / 2)
+	// 	return (BLUE);
+	// if (iteration < MAX_ITERATION - 20)
+	// 	return (GREEN);
+	if (iteration < MAX_ITERATION)
+		return (WHITISH);
+	else
+		return (BLACK);
 }
 
 //int main(void)

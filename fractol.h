@@ -4,21 +4,46 @@
 
 # include <stdlib.h>
 # include <stdio.h>
-# include <X11/X.h>
-# include <X11/keysym.h>
+//# include <X11/X.h>
+//# include <X11/keysym.h>
 
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
 
-# define WINDOW_WIDTH 1000
-# define WINDOW_HEIGHT 1000
+//WINDOW
+
+# define WINDOW_WIDTH 500
+# define WINDOW_HEIGHT 500
+
+//SYSTEM
 
 # define XMIN -3
 # define XMAX 3
 # define YMIN -3
 # define YMAX 3
 
-# define MAX_ITERATION 50
+//COLORS
+
+# define BLACK 0x000000
+# define WHITISH 0xFFEFFF
+# define GREEN 0x00FF00
+# define BLUE 0x0000F0
+# define ORANGE 0x2A1600
+# define DARK_BLUE 0x00001F
+
+//KEYCODE
+
+# define CLOSE_WINDOW 17
+# define KEY_RELEASE 2
+
+# define UP_ARROW 125
+# define DOWN_ARROW 126
+# define LEFT_ARROW 123
+# define RIGHT_ARROW 124
+# define ESCAPE 53
+
+
+# define MAX_ITERATION 80
 
 # define MLX_ERROR 1
 
@@ -62,22 +87,29 @@ typedef struct s_rect
 	int color;
 }	t_rect;
 
-//Graphic Requirements
+//graphic shit
 
 void	img_pix_put(t_img *img, int x, int y, int color);
 void	render_background(t_img *img, int color);
 int render_rect(t_img *img, t_rect rect);
 int render_set(t_img *img, t_data *data);
 int	render(t_data *data);
+void	image_init(t_data *data);
+int quit_window(t_data *data);
+
+//MAIN
+
 int handle_input(int keysym, t_data *data);
+
 void get_syst(t_data *data);
 int main ();
 
-//Math shit
+//math shit
 
 int	color_mandelbrot(float x, float y);
 int color_palette(int iteration);
 int color_main(int i, int j, t_data *data);
 float get_syst_pos(int x, int axis, t_data *data);
+float get_new_border(float x, float y, int type, t_data *data);
 
 #endif

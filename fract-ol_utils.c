@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 15:23:08 by mdorr             #+#    #+#             */
-/*   Updated: 2022/12/28 15:59:44 by mdorr            ###   ########.fr       */
+/*   Updated: 2022/12/28 16:22:44 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,13 @@ int	check_arg(int argc, char **argv, t_data *data)
 	if (ft_strcmp(argv[1], julia) == 0)
 	{
 		data->fractal = 1;
-		if (argc == 4)
-		{
-			data->Cx = ft_atoi(argv[2]);
-			data->Cy = ft_atoi(argv[3]);
-		}
+		data->Cx  = -0.7;
+		data->Cy = 0.27015;
+		//if (argc == 4)
+		// {
+		// 	data->Cx = ft_atoi(argv[2]);
+		// 	data->Cy = ft_atoi(argv[3]);
+		// }
 		return (1);
 	}
 	if (ft_strcmp(argv[1], mandel) == 0)

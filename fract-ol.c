@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:20:35 by mdorr             #+#    #+#             */
-/*   Updated: 2022/12/28 15:38:23 by mdorr            ###   ########.fr       */
+/*   Updated: 2022/12/28 16:22:26 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,6 @@ int main (int argc, char **argv)
 //1  - Mandelbrot
 	if (check_arg(argc, argv, &data) == 0)
 		return (0);
-	data.Cx  = -0.7;
-	data.Cy = 0.27015;
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		return (MLX_ERROR);

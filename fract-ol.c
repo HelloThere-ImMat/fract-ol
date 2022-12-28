@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:20:35 by mdorr             #+#    #+#             */
-/*   Updated: 2022/12/26 13:05:46 by mdorr            ###   ########.fr       */
+/*   Updated: 2022/12/28 03:58:15 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,16 @@ int handle_key_input(int keycode, t_data *data)
 	return (0);
 }
 
-int main ()
+int main (int argc, char **argv)
 {
 	t_data	data;
+//get fractal type from argv and store into a int (+ constant values if julia)
+//0  - Julia
+//1  - Mandelbrot
 
+	data.fractal = 0;
+	data.cx  = 1;
+	data.cy = 2;
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		return (MLX_ERROR);

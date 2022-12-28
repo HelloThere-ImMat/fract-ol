@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 14:48:34 by mdorr             #+#    #+#             */
-/*   Updated: 2022/12/26 13:04:39 by mdorr            ###   ########.fr       */
+/*   Updated: 2022/12/28 03:58:50 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,16 @@ float get_new_border(float x, float y, int type, t_data *data)
 
 int color_main(int i, int j, t_data *data)
 {
-	float cx;
-	float cy;
+	float x;
+	float y;
 	int color;
 
-	cx = get_syst_pos(i, 0, data);
-	cy = get_syst_pos(j, 1, data);
-	color = color_mandelbrot(cx, cy);
+	x = get_syst_pos(i, 0, data);
+	y = get_syst_pos(j, 1, data);
+	if (data.fractal == 0)
+		color = color_julia(x, y, data.Cx, data.Cy);
+	if (data.fractal == 1)
+		color = color_mandelbrot(x, y);
 	return (color);
 }
 
@@ -71,24 +74,51 @@ int	color_mandelbrot(float x, float y)
 {
 	int	iteration;
 	int color;
-	float	xtmp;
-	float	ytmp;
-	float	xn;
-	float	yn;
+	float	xOld;
+	float	yOld;
+	float	xNew;
+	float	yNew;
 
-	xn = 0;
-	yn = 0;
+	xNew = 0;
+	yNew = 0;
 	iteration = 0;
-	while ((xn * xn + yn * yn) < 4 && iteration < MAX_ITERATION)
+	while ((xNew * xNew + yNew * yNew) < 4 && iteration < MAX_ITERATION)
 	{
-		xtmp = xn;
-		ytmp = yn;
-		xn = xtmp * xtmp - ytmp * ytmp + x;
-		yn = 2 * xtmp * ytmp + y;
+		xOld = xNew;
+		yOld = yNew;
+		xNew = xOld * xOld - yOld * yOld + x;
+		yNew = 2 * xOld * yOld + y;
 		iteration++;
 	}
 	color = color_palette(iteration);
 	return (color);
+
+}
+
+int color_julia(float x, float y, float cx, float cy)
+{
+	int	iteration;
+	int color;
+	float	xOld;
+	float	yOld;
+	float	xNew;
+	float	yNew;
+
+	xNew = x;
+	yNew = y;
+	iteration = 0;
+	while ((xNew * xNew + yNew * yNew) < 4 && iteration < MAX_ITERATION)
+	{
+		xOld = xNew;
+		yOld = yNew;
+		xNew = xOld * xOld - yOld * yOld + cx;
+		yNew = 2 * xOld * yOld + cy;
+		iteration++;
+	}
+	color = color_palette(iteration);
+	return (color);
+
+
 
 }
 

@@ -69,6 +69,7 @@ typedef struct s_img
 
 typedef struct s_data
 {
+	char *fractal_name;
 	void *mlx_ptr;
 	void *win_ptr;
 	t_img img;
@@ -76,7 +77,11 @@ typedef struct s_data
 	float Xmax;
 	float Ymin;
 	float Ymax;
+	float Cx;
+	float Cy;
 }	t_data;
+
+
 
 typedef struct s_rect
 {

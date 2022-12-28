@@ -8,7 +8,6 @@
 //# include <X11/keysym.h>
 
 # include "minilibx-linux/mlx.h"
-# include "libft/libft.h"
 
 //WINDOW
 

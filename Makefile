@@ -1,6 +1,7 @@
 SRCS	=	fract-ol.c \
 			math_shit.c \
-			graphic_shit.c
+			graphic_shit.c \
+			fract-ol_utils.c
 
 NAME	=	./fractol
 
@@ -21,8 +22,12 @@ CFLAGS	= 	-Wall -Wextra -Werror
 
 
 all:	${OBJS}
-	$(CC) $(OBJS) -I /usr/X11/include -g -L /usr/X11/lib -l mlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJS) -I minilibx_linux/libmxl.a -L ./minilibx-linux -l mlx -lXext -lX11 -o $(NAME)
 
+
+
+mac :	${OBJS}
+	$(CC) $(OBJS) -I /usr/X11/include -g -L /usr/X11/lib -l mlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
 		rm -f ${OBJS}

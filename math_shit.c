@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 14:48:34 by mdorr             #+#    #+#             */
-/*   Updated: 2022/12/28 03:58:50 by mdorr            ###   ########.fr       */
+/*   Updated: 2022/12/28 15:30:45 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ int color_main(int i, int j, t_data *data)
 
 	x = get_syst_pos(i, 0, data);
 	y = get_syst_pos(j, 1, data);
-	if (data.fractal == 0)
-		color = color_julia(x, y, data.Cx, data.Cy);
-	if (data.fractal == 1)
+	if (data->fractal == 1)
+		color = color_julia(x, y, data->Cx, data->Cy);
+	if (data->fractal == 2)
 		color = color_mandelbrot(x, y);
 	return (color);
 }
@@ -117,9 +117,6 @@ int color_julia(float x, float y, float cx, float cy)
 	}
 	color = color_palette(iteration);
 	return (color);
-
-
-
 }
 
 int color_palette(int iteration)

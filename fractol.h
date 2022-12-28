@@ -69,7 +69,7 @@ typedef struct s_img
 
 typedef struct s_data
 {
-	char *fractal_name;
+	int fractal;
 	void *mlx_ptr;
 	void *win_ptr;
 	t_img img;
@@ -111,10 +111,18 @@ int main ();
 
 //math shit
 
+int color_julia(float x, float y, float cx, float cy);
 int	color_mandelbrot(float x, float y);
 int color_palette(int iteration);
 int color_main(int i, int j, t_data *data);
 float get_syst_pos(int x, int axis, t_data *data);
 float get_new_border(float x, float y, int type, t_data *data);
+
+//fract-ol_utils
+
+int		ft_strcmp(char *s1, char *s2);
+int		check_arg(int argc, char **argv, t_data *data);
+void	print_error(int error_type);
+
 
 #endif

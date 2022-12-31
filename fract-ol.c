@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:20:35 by mdorr             #+#    #+#             */
-/*   Updated: 2022/12/28 16:22:26 by mdorr            ###   ########.fr       */
+/*   Updated: 2022/12/30 21:31:07 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 
 void get_syst(t_data *data)
 {
-	data->Xmin = -3;
-	data->Xmax = 3;
-	data->Ymin = -3;
-	data->Ymax = 3;
+	data->Xmin = XMIN;
+	data->Xmax = XMAX;
+	data->Ymin = YMAX;
+	data->Ymax = YMIN;
 }
 
 int	 handle_mouse_input(int mousesym, int i, int j, t_data *data)
@@ -39,28 +39,34 @@ int	 handle_mouse_input(int mousesym, int i, int j, t_data *data)
 	x = get_syst_pos(i, 0, data);
 	y = get_syst_pos(j, 1, data);
 
-	// -y unused in the get_new_border func, why ?
+	// printf("y is %0.6f", y);
+	// //5 is zoom in / two fingers UP
+	// printf("mousesym = %d\n", mousesym);
 
-	if (mousesym ==4)
+	// printf("OLD xmax = %0.8f\n", data->Xmax);
+	// printf("OLD xmin = %0.8f\n", data->Xmin);
+	// printf("OLD ymin = %0.8f\n", data->Ymax);
+	// printf("OLD ymax = %0.8f\n", data->Ymin);
+	if (mousesym == 1)
 	{
-		data->Xmax = get_new_border(x, y, 1, data);
-		data->Xmin = get_new_border(x, y, 2, data);
-		data->Ymax = get_new_border(x, y, 3, data);
-		data->Ymin = get_new_border(x, y, 4, data);
+		data->Xmin = get_new_border(x, y, ZOOM_IN_XMIN, data);
+		data->Xmax = get_new_border(x, y, ZOOM_IN_XMAX, data);
+		data->Ymin = get_new_border(x, y, ZOOM_IN_YMIN, data);
+		data->Ymax = get_new_border(x, y, ZOOM_IN_YMAX, data);
+	}
+	//4 is zoom out / two fingers down
+	if (mousesym == 2)
+	{
+		data->Xmin = get_new_border(x, y, ZOOM_OUT_XMIN, data);
+		data->Xmax = get_new_border(x, y, ZOOM_OUT_XMAX, data);
+		data->Ymin = get_new_border(x, y, ZOOM_OUT_YMIN, data);
+		data->Ymax = get_new_border(x, y, ZOOM_OUT_YMAX, data);
 	}
 
-	if (mousesym == 5)
-	{
-		data->Xmax = get_new_border(x, y, 5, data);
-		data->Xmin = get_new_border(x, y, 6, data);
-		data->Ymax = get_new_border(x, y, 7, data);
-		data->Ymin = get_new_border(x, y, 8, data);
-	}
-
-	// printf("xmax = %0.8f\n", data->Xmax);
-	// printf("xmin = %0.8f\n", data->Xmin);
-	// printf("ymin = %0.8f\n", data->Ymax);
-	// printf("ymax = %0.8f\n", data->Ymin);
+	// printf("NEW xmax = %0.8f\n", data->Xmax);
+	// printf("NEW xmin = %0.8f\n", data->Xmin);
+	// printf("NEW ymin = %0.8f\n", data->Ymax);
+	// printf("NEW ymax = %0.8f\n", data->Ymin);
 	data->img.mlx_img = mlx_new_image(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &(*data).img.bpp, &(*data).img.line_len, &(*data).img.endian);
 	render(data);

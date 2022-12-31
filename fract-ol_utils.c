@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 15:23:08 by mdorr             #+#    #+#             */
-/*   Updated: 2022/12/28 17:40:44 by mdorr            ###   ########.fr       */
+/*   Updated: 2022/12/29 00:02:44 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ float	ft_atof(char* nptr)
 		}
 		return (res);
 	}
+	//to be checked
+	return (res);
 }
 
 int	check_arg(int argc, char **argv, t_data *data)

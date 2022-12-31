@@ -11,24 +11,24 @@
 
 //WINDOW
 
-# define WINDOW_WIDTH 500
-# define WINDOW_HEIGHT 500
+# define WINDOW_WIDTH 1200
+# define WINDOW_HEIGHT 800
 
 //SYSTEM
 
 # define XMIN -3
 # define XMAX 3
-# define YMIN -3
-# define YMAX 3
+# define YMIN -2
+# define YMAX 2
 
 //COLORS
 
 # define BLACK 0x000000
 # define WHITISH 0xFFEFFF
-# define GREEN 0x00FF00
+# define GREEN 0x80C9FF
 # define BLUE 0x0000F0
-# define ORANGE 0x2A1600
-# define DARK_BLUE 0x00001F
+# define DARK_BLUE 0x00006F
+# define BLACK_BLUE 0x00001F
 
 //KEYCODE
 
@@ -40,6 +40,18 @@
 # define LEFT_ARROW 123
 # define RIGHT_ARROW 124
 # define ESCAPE 53
+
+//Border & zoom
+# define ZOOM_IN_XMIN 1
+# define ZOOM_IN_XMAX 2
+# define ZOOM_IN_YMIN 3
+# define ZOOM_IN_YMAX 4
+# define ZOOM_OUT_XMIN 5
+# define ZOOM_OUT_XMAX 6
+# define ZOOM_OUT_YMIN 7
+# define ZOOM_OUT_YMAX 8
+
+# define ZOOM_RATIO 0.25
 
 
 # define MAX_ITERATION 80
@@ -72,10 +84,10 @@ typedef struct s_data
 	void *mlx_ptr;
 	void *win_ptr;
 	t_img img;
-	float Xmin;
-	float Xmax;
-	float Ymin;
-	float Ymax;
+	double Xmin;
+	double Xmax;
+	double Ymin;
+	double Ymax;
 	float Cx;
 	float Cy;
 }	t_data;

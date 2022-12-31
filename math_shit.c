@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 14:48:34 by mdorr             #+#    #+#             */
-/*   Updated: 2022/12/28 15:30:45 by mdorr            ###   ########.fr       */
+/*   Updated: 2022/12/31 16:16:54 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ float get_syst_pos(int x, int axis, t_data *data)
 	if (axis == 0)
 		c = (float)x * (data->Xmax - data->Xmin) / (float)(WINDOW_WIDTH) + data->Xmin;
 	if (axis == 1)
-		c = -((float)x * (data->Ymax - data->Ymin) / (float)(WINDOW_HEIGHT) + data->Ymin);
+		c = ((float)x * (data->Ymax - data->Ymin) / (float)(WINDOW_HEIGHT) + data->Ymin);
 	return (c);
 }
 
@@ -29,25 +29,22 @@ float get_syst_pos(int x, int axis, t_data *data)
 
 float get_new_border(float x, float y, int type, t_data *data)
 {
-
-//why the fuck am i never using y ?
-
-	if (type == 1)
-		 return (data->Xmax - 0.25 * (data->Xmax - x));
-	if (type == 2)
-		return (data->Xmin - 0.25 * (data->Xmin - x));
-	if (type == 3)
-		return (data->Ymax - 0.25 * (data->Ymax - x));
-	if (type == 4)
-		return (data->Ymin - 0.25 * (data->Ymin - x));
-	if (type == 5)
-		 return (data->Xmax + 0.25 * (data->Xmax - x));
-	if (type == 6)
-		return (data->Xmin + 0.25 * (data->Xmin - x));
-	if (type == 7)
-		return (data->Ymax + 0.25 * (data->Ymax - x));
-	if (type == 8)
-		return (data->Ymin + 0.25 * (data->Ymin - x));
+	if (type == ZOOM_IN_XMIN)
+		 return (data->Xmin - (ZOOM_RATIO * (data->Xmin - x)));
+	if (type == ZOOM_IN_XMAX)
+		return (data->Xmax - (ZOOM_RATIO * (data->Xmax - x)));
+	if (type == ZOOM_IN_YMIN)
+		return (data->Ymin - (ZOOM_RATIO * (data->Ymin - y)));
+	if (type == ZOOM_IN_YMAX)
+		return (data->Ymax - (ZOOM_RATIO * (data->Ymax - y)));
+	if (type == ZOOM_OUT_XMIN)
+		 return (data->Xmin + (ZOOM_RATIO * (data->Xmin - x)));
+	if (type == ZOOM_OUT_XMAX)
+		return (data->Xmax + (ZOOM_RATIO * (data->Xmax - x)));
+	if (type == ZOOM_OUT_YMIN)
+		return (data->Ymin + (ZOOM_RATIO * (data->Ymin - y)));
+	if (type == ZOOM_OUT_YMAX)
+		return (data->Ymax + (ZOOM_RATIO * (data->Ymax - y)));
 	else
 		return (0);
 }
@@ -74,10 +71,10 @@ int	color_mandelbrot(float x, float y)
 {
 	int	iteration;
 	int color;
-	float	xOld;
-	float	yOld;
-	float	xNew;
-	float	yNew;
+	double	xOld;
+	double	yOld;
+	double	xNew;
+	double	yNew;
 
 	xNew = 0;
 	yNew = 0;
@@ -99,10 +96,10 @@ int color_julia(float x, float y, float cx, float cy)
 {
 	int	iteration;
 	int color;
-	float	xOld;
-	float	yOld;
-	float	xNew;
-	float	yNew;
+	double	xOld;
+	double	yOld;
+	double	xNew;
+	double	yNew;
 
 	xNew = x;
 	yNew = y;
@@ -121,14 +118,14 @@ int color_julia(float x, float y, float cx, float cy)
 
 int color_palette(int iteration)
 {
-	// if (iteration < MAX_ITERATION / 4)
-	// 	return (DARK_BLUE);
-	// if (iteration < MAX_ITERATION / 3)
-	// 	return (ORANGE);
-	// if (iteration < MAX_ITERATION / 2)
-	// 	return (BLUE);
-	// if (iteration < MAX_ITERATION - 20)
-	// 	return (GREEN);
+	if (iteration < MAX_ITERATION / 4)
+		return (BLACK_BLUE);
+	if (iteration < MAX_ITERATION / 3)
+		return (DARK_BLUE);
+	if (iteration < MAX_ITERATION / 2)
+		return (BLUE);
+	if (iteration < MAX_ITERATION - 20)
+		return (GREEN);
 	if (iteration < MAX_ITERATION)
 		return (WHITISH);
 	else

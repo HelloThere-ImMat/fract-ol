@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 02:48:43 by mdorr             #+#    #+#             */
-/*   Updated: 2022/12/29 14:15:03 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/01/09 14:34:25 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	render(t_data *data)
 {
 	if (data->win_ptr == NULL)
 		return (MLX_ERROR);
-	//render_background(data->img.mlx_img, GREEN);
 	render_set(&data->img, data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 
@@ -79,7 +78,7 @@ int	render(t_data *data)
 
 int quit_window(t_data *data)
 {
-
+	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	data->win_ptr = NULL;
 	free(data->mlx_ptr);

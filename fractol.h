@@ -4,8 +4,8 @@
 
 # include <stdlib.h>
 # include <stdio.h>
-//# include <X11/X.h>
-//# include <X11/keysym.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 
 # include "minilibx-linux/mlx.h"
 
@@ -30,16 +30,27 @@
 # define DARK_BLUE 0x00006F
 # define BLACK_BLUE 0x00001F
 
-//KEYCODE
+//KEYCODE MAC
+
+//# define CLOSE_WINDOW 17
+//# define KEY_PRESS 2
+
+//# define UP_ARROW 125
+//# define DOWN_ARROW 126
+//# define LEFT_ARROW 123
+//# define RIGHT_ARROW 124
+//# define ESCAPE 53
+
+//KEYCODE LINUX
 
 # define CLOSE_WINDOW 17
-# define KEY_RELEASE 2
+# define KEY_PRESS 2
 
-# define UP_ARROW 125
-# define DOWN_ARROW 126
-# define LEFT_ARROW 123
-# define RIGHT_ARROW 124
-# define ESCAPE 53
+# define UP_ARROW 65362
+# define DOWN_ARROW 65364
+# define LEFT_ARROW 65361
+# define RIGHT_ARROW 65363
+# define ESCAPE 65307
 
 //Border & zoom
 # define ZOOM_IN_XMIN 1

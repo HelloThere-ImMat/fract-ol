@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:20:35 by mdorr             #+#    #+#             */
-/*   Updated: 2023/01/25 10:52:27 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/01/25 15:15:24 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,3 @@ int main (int argc, char **argv)
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }
-
-//put mask to 0 if on mac
-
-
-//essayer d'enlever mlx_loop_hook et d'appeler render a chaque fin d'event

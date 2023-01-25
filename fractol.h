@@ -7,7 +7,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-# include "minilibx-linux/mlx.h"
+# include "minilibx/mlx.h"
 
 //WINDOW
 
@@ -52,6 +52,7 @@
 
 
 //Border & zoom
+
 # define ZOOM_IN_XMIN 1
 # define ZOOM_IN_XMAX 2
 # define ZOOM_IN_YMIN 3
@@ -73,17 +74,11 @@ typedef struct s_img
 {
 	void	*mlx_img;
 	char	*addr;
-	int		bpp; /* bits per pixel */
+	int		bpp;
 	int		line_len;
 	int		endian;
 }	t_img;
 
-//typedef struct s_color
-//{
-//	int	red;
-//	int	green;
-//	int	bleu;
-//}	t_color;
 
 typedef struct s_data
 {

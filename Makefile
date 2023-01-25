@@ -22,7 +22,7 @@ CFLAGS	= 	-Wall -Wextra -Werror
 
 
 all:	${OBJS}
-	$(CC) $(OBJS) -I minilibx_linux/libmxl.a -L ./minilibx-linux -l mlx -lXext -lX11 -o $(NAME)
+	$(CC) $(OBJS) -I minilibx/libmxl.a -L ./minilibx -l mlx -lXext -lX11 -o $(NAME)
 
 
 

@@ -3,7 +3,7 @@
 
 
 # include <stdlib.h>
-# include <stdio.h>
+# include <unistd.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 
@@ -24,10 +24,6 @@
 //COLORS
 
 # define BLACK 0x000000
-# define WHITISH 0xFFEFFF
-# define GREEN 0x80C9FF
-# define BLUE 0x0000F0
-# define DARK_BLUE 0x00006F
 # define BLACK_BLUE 0x00001F
 
 //KEYCODE MAC
@@ -51,6 +47,9 @@
 # define LEFT_ARROW 65361
 # define RIGHT_ARROW 65363
 # define ESCAPE 65307
+# define C_KEY 99
+# define SPACE_KEY 32
+
 
 //Border & zoom
 # define ZOOM_IN_XMIN 1
@@ -65,13 +64,10 @@
 # define ZOOM_RATIO 0.25
 
 
-# define MAX_ITERATION 80
+# define MAX_ITERATION 120
 
 # define MLX_ERROR 1
 
-# define RED_PIXEL 0xFF0000
-# define GREEN_PIXEL 0x00FF00
-# define WHITE_PIXEL 0xFFFFFF
 
 typedef struct s_img
 {
@@ -101,6 +97,7 @@ typedef struct s_data
 	double Ymax;
 	float Cx;
 	float Cy;
+	int	color;
 }	t_data;
 
 
@@ -133,9 +130,9 @@ int main ();
 
 //math shit
 
-int color_julia(float x, float y, float cx, float cy);
-int	color_mandelbrot(float x, float y);
-int color_palette(int iteration);
+int color_julia(float x, float y, t_data *data);
+int	color_mandelbrot(float x, float y, t_data *data);
+int color_palette(int iteration, t_data *data);
 int color_main(int i, int j, t_data *data);
 float get_syst_pos(int x, int axis, t_data *data);
 float get_new_border(float x, float y, int type, t_data *data);

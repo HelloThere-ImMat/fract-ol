@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 02:48:43 by mdorr             #+#    #+#             */
-/*   Updated: 2023/01/09 14:34:25 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/01/25 10:54:46 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,27 +45,6 @@ int render_set(t_img *img, t_data *data)
 	return (0);
 }
 
-//JUST FOR THE TEST OF THE ZOOM
-
-void	render_background(t_img *img, int color)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < WINDOW_HEIGHT)
-	{
-		j = 0;
-		while (j < WINDOW_WIDTH)
-		{
-			img_pix_put(img, j++, i, color);
-		}
-		++i;
-	}
-}
-
-//
-
 int	render(t_data *data)
 {
 	if (data->win_ptr == NULL)
@@ -83,6 +62,6 @@ int quit_window(t_data *data)
 	data->win_ptr = NULL;
 	free(data->mlx_ptr);
 
-	printf("DESTROYED ;)\n");
+	write(1, "DESTROYED\n", 10);
 	exit(EXIT_SUCCESS);
 }

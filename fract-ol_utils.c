@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 15:23:08 by mdorr             #+#    #+#             */
-/*   Updated: 2022/12/29 00:02:44 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/01/25 10:57:06 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	check_arg(int argc, char **argv, t_data *data)
 void	print_error(int error_type)
 {
 	if (error_type == 1)
-		printf("Invalid number of arguments, please only write the fractal name\n");
+		write(1, "Invalid number of arguments, please only write the fractal name\n", 64);
 	if (error_type == 2)
-		printf("Invalid fractal name \nOptions are : mandelbrot, julia\n");
+		write(1, "Invalid fractal name\nOptions are : mandelbrot, julia\n", 53);
 }

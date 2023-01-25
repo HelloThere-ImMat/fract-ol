@@ -6,55 +6,41 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 14:48:34 by mdorr             #+#    #+#             */
-/*   Updated: 2023/01/25 10:35:19 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/01/25 15:51:15 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-//Func that will translate pixel position into a 2d plan with (0;0) in the center
+//This function calculates the new mathematic borders of our 2d visualisation
 
-float get_syst_pos(int x, int axis, t_data *data)
-{
-	double c;
-
-	if (axis == 0)
-		c = (float)x * (data->Xmax - data->Xmin) / (float)(WINDOW_WIDTH) + data->Xmin;
-	if (axis == 1)
-		c = ((float)x * (data->Ymax - data->Ymin) / (float)(WINDOW_HEIGHT) + data->Ymin);
-	return (c);
-}
-
-//This function calculates the new mathematic borders of our 2d visualisationaa
-
-float get_new_border(float x, float y, int type, t_data *data)
+float	get_new_border(float x, float y, int type, t_data *data)
 {
 	if (type == ZOOM_IN_XMIN)
-		 return (data->Xmin - (ZOOM_RATIO * (data->Xmin - x)));
+		return (data->xmin - (ZOOM_RATIO * (data->xmin - x)));
 	if (type == ZOOM_IN_XMAX)
-		return (data->Xmax - (ZOOM_RATIO * (data->Xmax - x)));
+		return (data->xmax - (ZOOM_RATIO * (data->xmax - x)));
 	if (type == ZOOM_IN_YMIN)
-		return (data->Ymin - (ZOOM_RATIO * (data->Ymin - y)));
+		return (data->ymin - (ZOOM_RATIO * (data->ymin - y)));
 	if (type == ZOOM_IN_YMAX)
-		return (data->Ymax - (ZOOM_RATIO * (data->Ymax - y)));
+		return (data->ymax - (ZOOM_RATIO * (data->ymax - y)));
 	if (type == ZOOM_OUT_XMIN)
-		 return (data->Xmin + (ZOOM_RATIO * (data->Xmin - x)));
+		return (data->xmin + (ZOOM_RATIO * (data->xmin - x)));
 	if (type == ZOOM_OUT_XMAX)
-		return (data->Xmax + (ZOOM_RATIO * (data->Xmax - x)));
+		return (data->xmax + (ZOOM_RATIO * (data->xmax - x)));
 	if (type == ZOOM_OUT_YMIN)
-		return (data->Ymin + (ZOOM_RATIO * (data->Ymin - y)));
+		return (data->ymin + (ZOOM_RATIO * (data->ymin - y)));
 	if (type == ZOOM_OUT_YMAX)
-		return (data->Ymax + (ZOOM_RATIO * (data->Ymax - y)));
+		return (data->ymax + (ZOOM_RATIO * (data->ymax - y)));
 	else
 		return (0);
 }
 
-
-int color_main(int i, int j, t_data *data)
+int	color_main(int i, int j, t_data *data)
 {
-	double x;
-	double y;
-	int color;
+	double	x;
+	double	y;
+	int		color;
 
 	x = get_syst_pos(i, 0, data);
 	y = get_syst_pos(j, 1, data);
@@ -67,56 +53,49 @@ int color_main(int i, int j, t_data *data)
 
 //Func that checks if the complex number belong to the mandelbrot set
 
-int	color_mandelbrot(float x, float y, t_data *data)
+int	color_mandelbrot(float x, float y, t_data *d)
 {
-	int	iteration;
-	int color;
-	double	xOld;
-	double	yOld;
-	double	xNew;
-	double	yNew;
+	int		iteration;
+	int		color;
 
-	xNew = 0;
-	yNew = 0;
+	d->xnew = 0;
+	d->ynew = 0;
 	iteration = 0;
-	while ((xNew * xNew + yNew * yNew) < 4 && iteration < MAX_ITERATION)
+	while ((d->xnew * d->xnew + d->ynew * d->ynew) < 4
+		&& iteration < MAX_ITERATION)
 	{
-		xOld = xNew;
-		yOld = yNew;
-		xNew = xOld * xOld - yOld * yOld + x;
-		yNew = 2 * xOld * yOld + y;
+		d->xold = d->xnew;
+		d->yold = d->ynew;
+		d->xnew = d->xold * d->xold - d->yold * d->yold + x;
+		d->ynew = 2 * d->xold * d->yold + y;
 		iteration++;
 	}
-	color = color_palette(iteration, data);
-	return (color);
-
-}
-
-int color_julia(float x, float y, t_data *data)
-{
-	int	iteration;
-	int color;
-	double	xOld;
-	double	yOld;
-	double	xNew;
-	double	yNew;
-
-	xNew = x;
-	yNew = y;
-	iteration = 0;
-	while ((xNew * xNew + yNew * yNew) < 4 && iteration < MAX_ITERATION)
-	{
-		xOld = xNew;
-		yOld = yNew;
-		xNew = xOld * xOld - yOld * yOld + data->Cx;
-		yNew = 2 * xOld * yOld + data->Cy;
-		iteration++;
-	}
-	color = color_palette(iteration, data);
+	color = color_palette(iteration, d);
 	return (color);
 }
 
-int color_palette(int iteration, t_data *data)
+int	color_julia(float x, float y, t_data *d)
+{
+	int	iteration;
+	int	color;
+
+	d->xnew = x;
+	d->ynew = y;
+	iteration = 0;
+	while ((d->xnew * d->xnew + d->ynew * d->ynew) < 4
+		&& iteration < MAX_ITERATION)
+	{
+		d->xold = d->xnew;
+		d->yold = d->ynew;
+		d->xnew = d->xold * d->xold - d->yold * d->yold + d->cx;
+		d->ynew = 2 * d->xold * d->yold + d->cy;
+		iteration++;
+	}
+	color = color_palette(iteration, d);
+	return (color);
+}
+
+int	color_palette(int iteration, t_data *data)
 {
 	if (data->color > 3)
 		data->color = 1;
@@ -133,5 +112,4 @@ int color_palette(int iteration, t_data *data)
 		if (data->color == 3)
 			return (iteration * 0x5150A);
 	}
-
 }

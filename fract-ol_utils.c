@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 15:23:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/01/25 10:57:06 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/01/25 16:23:57 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,54 +28,12 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[e] - s2[e]);
 }
 
-float	ft_atof(char* nptr)
-{
-	int	a;
-	int	e;
-	int	sign;
-	float	res;
-
-	a = 0;
-	e = 0;
-	sign = 1;
-	res = 0;
-	while (nptr[a])
-	{
-		while ((nptr[a] > 8 && nptr[a] < 14) || nptr[a] == 32)
-			a++;
-		if (nptr[a] == '-' || nptr[a] == '+')
-		{
-			if (nptr[a] == 45)
-				sign = sign * -1;
-			a++;
-		}
-		while (nptr[a] >= 48 && nptr[a] <= 57 && nptr[a] != 46)
-		{
-			res = res * 10 + nptr[a] - '0';
-			a++;
-		}
-		a++;
-		while (nptr[a] >= 48 && nptr[a] <= 57)
-		{
-			res = res * 10 + nptr[a] - '0';
-			a++;
-			e++;
-		}
-		while (e > 0)
-		{
-			res *= 0.1;
-			e--;
-		}
-		return (res);
-	}
-	//to be checked
-	return (res);
-}
+//PENSER A RAJOUTER LE CHECK DES ARG DE JULIA (FORMAT FLOAT)
 
 int	check_arg(int argc, char **argv, t_data *data)
 {
-	char *mandel;
-	char *julia;
+	char	*mandel;
+	char	*julia;
 
 	if (argc != 2 && argc != 4)
 	{
@@ -89,14 +47,14 @@ int	check_arg(int argc, char **argv, t_data *data)
 		data->fractal = 1;
 		if (argc == 2)
 		{
-			data->Cx  = -0.7;
-			data->Cy = 0.27015;
+			data->cx = -0.7;
+			data->cy = 0.27015;
 		}
 		if (argc == 4)
-		 {
-		 	data->Cx = ft_atof(argv[2]);
-		 	data->Cy = ft_atof(argv[3]);
-		 }
+		{
+			data->cx = ft_atof(argv[2]);
+			data->cy = ft_atof(argv[3]);
+		}
 		return (1);
 	}
 	if (ft_strcmp(argv[1], mandel) == 0)
@@ -111,7 +69,20 @@ int	check_arg(int argc, char **argv, t_data *data)
 void	print_error(int error_type)
 {
 	if (error_type == 1)
-		write(1, "Invalid number of arguments, please only write the fractal name\n", 64);
+		write(1, "Invalid number of arguments\n", 28);
 	if (error_type == 2)
 		write(1, "Invalid fractal name\nOptions are : mandelbrot, julia\n", 53);
+}
+
+float	get_syst_pos(int x, int axis, t_data *data)
+{
+	double	c;
+
+	if (axis == 0)
+		c = (float)x * (data->xmax - data->xmin)
+			/ (float)(W_WIDTH) + data->xmin;
+	if (axis == 1)
+		c = ((float)x * (data->ymax - data->ymin)
+				/ (float)(W_HEIGHT) + data->ymin);
+	return (c);
 }

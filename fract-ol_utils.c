@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 15:23:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/01/25 16:23:57 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/01/26 10:52:33 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,53 @@ int	ft_strcmp(char *s1, char *s2)
 
 //PENSER A RAJOUTER LE CHECK DES ARG DE JULIA (FORMAT FLOAT)
 
+int check_float(char **argv)
+{
+	int i;
+	int	j;
+	int len;
+
+	i = 2;
+	j = 0;
+	while (i < 4)
+	{
+		len = 0;
+		while (argv[i][j])
+			len++;
+		while (argv[i][j])
+		{
+			while (argv[i][j] > 47 && argv[i][j] < 58)
+				j++;
+			if (argv[i][j] == 44 || argv[i][j] == 46)
+				j++;
+			while (argv[i][j] > 47 && argv[i][j] < 58)
+				j++;
+			if (len != j)
+				return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+int check_julia(int argc, char **argv,t_data *data)
+{
+	data->fractal = 1;
+	if (argc == 2)
+	{
+		data->cx = -0.7;
+		data->cy = 0.27015;
+	}
+	if (argc == 4)
+	{
+		if (check_float(argv[2]) == 1 || check_float(argv[3]) == 1)
+			return (0);
+		data->cx = ft_atof(argv[2]);
+		data->cy = ft_atof(argv[3]);
+	}
+	return (1);
+}
+
 int	check_arg(int argc, char **argv, t_data *data)
 {
 	char	*mandel;
@@ -44,18 +91,11 @@ int	check_arg(int argc, char **argv, t_data *data)
 	julia = "julia";
 	if (ft_strcmp(argv[1], julia) == 0)
 	{
-		data->fractal = 1;
-		if (argc == 2)
-		{
-			data->cx = -0.7;
-			data->cy = 0.27015;
-		}
-		if (argc == 4)
-		{
-			data->cx = ft_atof(argv[2]);
-			data->cy = ft_atof(argv[3]);
-		}
-		return (1);
+		if (check_julia(argc, argv, data) == 1)
+			return (1);
+		else
+			print_error(3);
+			return (0);
 	}
 	if (ft_strcmp(argv[1], mandel) == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:20:35 by mdorr             #+#    #+#             */
-/*   Updated: 2023/01/25 15:54:58 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/01/25 21:24:23 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	handle_mouse_input(int mousesym, int i, int j, t_data *data)
 	return (0);
 }
 
-int	handle_arrow_input(int keycode, t_data *data)
+void	handle_arrow_input(int keycode, t_data *data)
 {
 	double	step;
 
@@ -84,8 +84,11 @@ int	handle_arrow_input(int keycode, t_data *data)
 	}
 }
 
+#include <stdio.h>
+
 int	handle_key_input(int keycode, t_data *data)
 {
+	printf("%d\n", keycode);
 	if (keycode == ESCAPE)
 	{
 		mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
@@ -127,8 +130,10 @@ int	main(int argc, char **argv)
 	get_syst(&data);
 	image_init(&data);
 	mlx_mouse_hook(data.win_ptr, &handle_mouse_input, &data);
-	mlx_hook(data.win_ptr, KEY_PRESS, KeyPressMask, &handle_key_input, &data);
-	mlx_hook(data.win_ptr, CLOSE_WINDOW, LeaveWindowMask, &quit_window, &data);
+	mlx_hook(data.win_ptr, KEY_PRESS, 0, &handle_key_input, &data);
+	mlx_hook(data.win_ptr, CLOSE_WINDOW, 0, &quit_window, &data);
+	// mlx_hook(data.win_ptr, KEY_PRESS, KeyPressMask, &handle_key_input, &data);
+	// mlx_hook(data.win_ptr, CLOSE_WINDOW, LeaveWindowMask, &quit_window, &data);
 	render(&data);
 	mlx_loop(data.mlx_ptr);
 	return (0);

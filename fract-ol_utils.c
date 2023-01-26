@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 15:23:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/01/26 15:46:26 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/01/26 17:44:20 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ float	get_syst_pos(int x, int axis, t_data *data)
 	double	c;
 
 	if (axis == 0)
-		c = (float)x * (data->xmax - data->xmin)
-			/ (float)(W_WIDTH) + data->xmin;
+		c = ((float)x * (data->xmax - data->xmin)
+				/ (float)(W_WIDTH) + data->xmin);
 	if (axis == 1)
 		c = ((float)x * (data->ymax - data->ymin)
 				/ (float)(W_HEIGHT) + data->ymin);

@@ -1,6 +1,6 @@
 SRCS	=	fract-ol.c \
-			math_shit.c \
-			graphic_shit.c \
+			math_utils.c \
+			graphic_utils.c \
 			fract-ol_utils.c \
 			str_utils.c
 

@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:30:58 by mdorr             #+#    #+#             */
-/*   Updated: 2023/01/26 17:39:36 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/01/26 17:42:04 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,11 @@
 
 //# define CLOSE_WINDOW 17
 //# define KEY_PRESS 2
-
 //# define UP_ARROW 125
 //# define DOWN_ARROW 126
 //# define LEFT_ARROW 123
 //# define RIGHT_ARROW 124
 //# define ESCAPE 53
-
 //# define C_KEY 8
 //# define SPACE_KEY 49
 
@@ -115,7 +113,13 @@ typedef struct s_rect
 	int	color;
 }	t_rect;
 
-//GRAPHIC SHIT
+//MAIN
+
+int		handle_input(int keysym, t_data *data);
+int		main(int argc, char **argv);
+void	get_syst(t_data *data);
+
+//GRAPHIC UTILS
 
 void	img_pix_put(t_img *img, int x, int y, int color);
 void	render_background(t_img *img, int color);
@@ -125,13 +129,7 @@ int		render_set(t_img *img, t_data *data);
 int		render(t_data *data);
 int		quit_window(t_data *data);
 
-//MAIN
-
-int		handle_input(int keysym, t_data *data);
-int		main(int argc, char **argv);
-void	get_syst(t_data *data);
-
-//MATH SHIT
+//MATH UTILS
 
 int		color_julia(float x, float y, t_data *data);
 int		color_mandelbrot(float x, float y, t_data *data);

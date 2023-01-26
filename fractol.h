@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:30:58 by mdorr             #+#    #+#             */
-/*   Updated: 2023/01/26 15:47:27 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/01/26 17:39:36 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,15 @@
 
 //KEYCODE LINUX
 
- # define CLOSE_WINDOW 17
- # define KEY_PRESS 2
-
- # define UP_ARROW 65362
- # define DOWN_ARROW 65364
- # define LEFT_ARROW 65361
- # define RIGHT_ARROW 65363
- # define ESCAPE 65307
- # define C_KEY 99
- # define SPACE_KEY 32
+# define CLOSE_WINDOW 17
+# define KEY_PRESS 2
+# define UP_ARROW 65362
+# define DOWN_ARROW 65364
+# define LEFT_ARROW 65361
+# define RIGHT_ARROW 65363
+# define ESCAPE 65307
+# define C_KEY 99
+# define SPACE_KEY 32
 
 //BORDER & ZOOM
 

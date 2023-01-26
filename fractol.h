@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:30:58 by mdorr             #+#    #+#             */
-/*   Updated: 2023/01/25 21:24:57 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/01/26 15:47:27 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-//# include <X11/X.h>
-//# include <X11/keysym.h>
+# include <stddef.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include "minilibx/mlx.h"
 
 //WINDOW
@@ -38,30 +39,30 @@
 
 //KEYCODE MAC
 
-# define CLOSE_WINDOW 17
-# define KEY_PRESS 2
+//# define CLOSE_WINDOW 17
+//# define KEY_PRESS 2
 
-# define UP_ARROW 125
-# define DOWN_ARROW 126
-# define LEFT_ARROW 123
-# define RIGHT_ARROW 124
-# define ESCAPE 53
+//# define UP_ARROW 125
+//# define DOWN_ARROW 126
+//# define LEFT_ARROW 123
+//# define RIGHT_ARROW 124
+//# define ESCAPE 53
 
-# define C_KEY 8
-# define SPACE_KEY 49
+//# define C_KEY 8
+//# define SPACE_KEY 49
 
 //KEYCODE LINUX
 
-// # define CLOSE_WINDOW 17
-// # define KEY_PRESS 2
+ # define CLOSE_WINDOW 17
+ # define KEY_PRESS 2
 
-// # define UP_ARROW 65362
-// # define DOWN_ARROW 65364
-// # define LEFT_ARROW 65361
-// # define RIGHT_ARROW 65363
-// # define ESCAPE 65307
-// # define C_KEY 99
-// # define SPACE_KEY 32
+ # define UP_ARROW 65362
+ # define DOWN_ARROW 65364
+ # define LEFT_ARROW 65361
+ # define RIGHT_ARROW 65363
+ # define ESCAPE 65307
+ # define C_KEY 99
+ # define SPACE_KEY 32
 
 //BORDER & ZOOM
 
@@ -146,7 +147,7 @@ int		check_arg(int argc, char **argv, t_data *data);
 void	print_error(int error_type);
 float	get_syst_pos(int x, int axis, t_data *data);
 
-//FT ATOF
+//STR UTILS
 
 float	ft_atof(char *nptr);
 int		get_sign(char *nptr, int *a);

@@ -2,7 +2,7 @@ SRCS	=	fract-ol.c \
 			math_shit.c \
 			graphic_shit.c \
 			fract-ol_utils.c \
-			ft_atof.c
+			str_utils.c
 
 NAME	=	./fractol
 

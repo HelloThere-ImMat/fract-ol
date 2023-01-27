@@ -1,3 +1,5 @@
+OBJ_DIR = obj
+
 SRCS	=	fract-ol.c \
 			math_utils.c \
 			graphic_utils.c \
@@ -6,38 +8,31 @@ SRCS	=	fract-ol.c \
 
 NAME	=	./fractol
 
-OBJS	= 	${SRCS:.c=.o}
-
-BONUS_OBJS	= ${BONUS:.c=.o}
+OBJS	= 	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 CC	= 	gcc
 
-
 CFLAGS	= 	-Wall -Wextra -Werror
 
+all: ${NAME}
 
-.c.o:
+${NAME}: ${OBJS}
+	${CC} ${OBJS} -I minilibx/libmxl.a -L ./minilibx -l mlx -lXext -lX11 -o $(NAME)
 
-		${CC} -Imlx -c $< -o ${<:.c=.o}
-
-
-
-all:	${OBJS}
-	$(CC) $(OBJS) -I minilibx/libmxl.a -L ./minilibx -l mlx -lXext -lX11 -o $(NAME)
-
-
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(OBJ_DIR)
+	${CC} ${CFLAGS} -c $< -o $@
 
 mac :	${OBJS}
 	$(CC) $(OBJS) -I /usr/X11/include -g -L /usr/X11/lib -l mlx -framework OpenGL -framework AppKit -o $(NAME)
 
+
 clean:
-		rm -f ${OBJS}
+	rm -f ${OBJS} ${BONUS_OBJS}
 
+fclean: clean
+	rm -f ${NAME} ${BONUS_NAME}
 
-fclean:	clean
-		rm -f ${NAME}
+re: fclean all
 
-
-re:	fclean all
-
-.PHONY : 	all clean fclean re
+.PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:30:58 by mdorr             #+#    #+#             */
-/*   Updated: 2023/01/26 17:42:04 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/01/28 11:53:20 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 
 # define CLOSE_WINDOW 17
 # define KEY_PRESS 2
+
 # define UP_ARROW 65362
 # define DOWN_ARROW 65364
 # define LEFT_ARROW 65361

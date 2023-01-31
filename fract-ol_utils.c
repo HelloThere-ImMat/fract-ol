@@ -6,12 +6,11 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 15:23:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/01/26 17:44:20 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/01/31 12:10:32 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-//PENSER A RAJOUTER LE CHECK DES ARG DE JULIA (FORMAT FLOAT)
 
 int	check_float(char *argv)
 {

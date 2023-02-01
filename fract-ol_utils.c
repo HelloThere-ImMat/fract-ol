@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 15:23:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/01/31 12:10:32 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/02/01 18:37:38 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	check_float(char *argv)
 	len = 0;
 	while (argv[len])
 		len++;
+	if (argv[i] == 45)
+		i++;
 	while (argv[i] > 47 && argv[i] < 58)
 		i++;
 	if (argv[i] == 44 || argv[i] == 46)
